@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: screening_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: identity_screening
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - screening_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: screening_backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      MONGO_URI: mongodb://mongodb:27017/identity_screening
+      JWT_SECRET: super_secure_jwt_secret_key_change_in_production_2026
+      AI_SERVICE_URL: http://ai-service:8000
+    depends_on:
+      - mongodb
+      - ai-service
+    networks:
+      - screening_network
+
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: screening_ai_service
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      HOST: 0.0.0.0
+      ENVIRONMENT: production
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+    networks:
+      - screening_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: screening_frontend
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - screening_network
+
+networks:
+  screening_network:
+    driver: bridge
+
+volumes:
+  mongo_data:
