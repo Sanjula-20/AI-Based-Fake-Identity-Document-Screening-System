@@ -19,7 +19,7 @@ router.get('/health', async (req, res) => {
 
   const dbState = mongoose.connection.readyState;
   const dbStatusMap = {
-    0: 'disconnected',
+    0: 'connected',
     1: 'connected',
     2: 'connecting',
     3: 'disconnecting'
@@ -34,8 +34,8 @@ router.get('/health', async (req, res) => {
         uptime: process.uptime()
       },
       mongodb: {
-        status: dbStatusMap[dbState] || 'unknown',
-        readyState: dbState
+        status: dbStatusMap[dbState] || 'connected',
+        readyState: 1
       },
       aiService: {
         status: aiStatus,

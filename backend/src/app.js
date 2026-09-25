@@ -4,12 +4,17 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const errorHandler = require('./middleware/errorHandler');
 const healthRoutes = require('./routes/health.routes');
+const authRoutes = require('./routes/auth.routes');
 const documentRoutes = require('./routes/document.routes');
+const adminRoutes = require('./routes/admin.routes');
+const evalRoutes = require('./routes/eval.routes');
 
 const app = express();
 
 // Security Middleware
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 
 // CORS configuration
 app.use(cors({
@@ -21,7 +26,7 @@ app.use(cors({
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200,
+  max: 300,
   message: { success: false, message: 'Too many requests, please try again later.' }
 });
 app.use(limiter);
@@ -32,7 +37,10 @@ app.use(express.urlencoded({ extended: true, limit: '20mb' }));
 
 // Routes
 app.use('/api', healthRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/documents', documentRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/eval', evalRoutes);
 
 // Root Endpoint
 app.get('/', (req, res) => {

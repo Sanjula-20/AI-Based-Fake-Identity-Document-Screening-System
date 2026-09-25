@@ -14,15 +14,15 @@ export default function SystemHealthBadge() {
 
   useEffect(() => {
     checkHealth();
-    const interval = setInterval(checkHealth, 10000);
+    const interval = setInterval(checkHealth, 8000);
     return () => clearInterval(interval);
   }, []);
 
   if (loading) {
     return (
-      <div className="flex items-center space-x-2 text-xs text-slate-400 animate-pulse">
-        <Activity className="w-3.5 h-3.5" />
-        <span>Checking services...</span>
+      <div className="flex items-center space-x-2 text-xs text-slate-500 animate-pulse">
+        <Activity className="w-3.5 h-3.5 text-blue-600" />
+        <span>Syncing telemetry...</span>
       </div>
     );
   }
@@ -32,31 +32,34 @@ export default function SystemHealthBadge() {
   const isAiOk = health?.services?.aiService?.status === 'connected';
 
   return (
-    <div className="flex items-center space-x-3 text-xs">
+    <div className="flex items-center space-x-2.5 text-xs">
       {/* Express Backend */}
-      <div className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-850 border border-slate-800">
-        <Server className={`w-3.5 h-3.5 ${isBackendOk ? 'text-emerald-400' : 'text-rose-400'}`} />
-        <span className="text-slate-300">Backend:</span>
-        <span className={isBackendOk ? 'text-emerald-400 font-medium' : 'text-rose-400 font-medium'}>
-          {isBackendOk ? 'Online' : 'Offline'}
+      <div className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 shadow-xs">
+        <Server className={`w-3.5 h-3.5 ${isBackendOk ? 'text-emerald-600' : 'text-rose-600'}`} />
+        <span className="text-slate-600 font-medium">Backend:</span>
+        <span className={`font-semibold flex items-center space-x-1 ${isBackendOk ? 'text-emerald-700' : 'text-rose-700'}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${isBackendOk ? 'bg-emerald-500 animate-ping' : 'bg-rose-500'}`}></span>
+          <span>{isBackendOk ? 'Online' : 'Offline'}</span>
         </span>
       </div>
 
       {/* MongoDB */}
-      <div className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-850 border border-slate-800">
-        <Database className={`w-3.5 h-3.5 ${isMongoOk ? 'text-emerald-400' : 'text-amber-400'}`} />
-        <span className="text-slate-300">Mongo:</span>
-        <span className={isMongoOk ? 'text-emerald-400 font-medium' : 'text-amber-400 font-medium'}>
-          {isMongoOk ? 'Connected' : 'Disconnected'}
+      <div className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 shadow-xs">
+        <Database className={`w-3.5 h-3.5 ${isMongoOk ? 'text-emerald-600' : 'text-amber-600'}`} />
+        <span className="text-slate-600 font-medium">Database:</span>
+        <span className={`font-semibold flex items-center space-x-1 ${isMongoOk ? 'text-emerald-700' : 'text-amber-700'}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${isMongoOk ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+          <span>{isMongoOk ? 'Connected' : 'Disconnected'}</span>
         </span>
       </div>
 
       {/* FastAPI AI Service */}
-      <div className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-850 border border-slate-800">
-        <Cpu className={`w-3.5 h-3.5 ${isAiOk ? 'text-blue-400' : 'text-rose-400'}`} />
-        <span className="text-slate-300">AI Engine:</span>
-        <span className={isAiOk ? 'text-blue-400 font-medium' : 'text-rose-400 font-medium'}>
-          {isAiOk ? 'Active' : 'Unreachable'}
+      <div className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 shadow-xs">
+        <Cpu className={`w-3.5 h-3.5 ${isAiOk ? 'text-blue-600' : 'text-rose-600'}`} />
+        <span className="text-slate-600 font-medium">AI Engine:</span>
+        <span className={`font-semibold flex items-center space-x-1 ${isAiOk ? 'text-blue-700' : 'text-rose-700'}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${isAiOk ? 'bg-blue-600 animate-pulse' : 'bg-rose-500'}`}></span>
+          <span>{isAiOk ? 'Active' : 'Offline'}</span>
         </span>
       </div>
     </div>
