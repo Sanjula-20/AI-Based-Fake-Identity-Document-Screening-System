@@ -4,11 +4,26 @@ import numpy as np
 
 def decode_qr_and_barcode(img: np.ndarray) -> dict:
     """
-    Detects and decodes QR codes and barcodes embedded in the document.
+    Detects and decodes QR codes embedded in Indian PAN cards.
+    Extracts encoded PAN, Name, DOB, Father's Name, and Photo/Signature payload where available.
+    
+    IMPORTANT:
+    If QR code is missing (older PAN design), returns matchStatus="NOT_PRESENT"
+    without penalizing the card as fraudulent.
+    If QR decoding fails due to blur/crop/damage, returns matchStatus="UNREADABLE".
     """
+    if img is None or img.size == 0:
+        return {
+            "detected": False,
+            "matchStatus": "UNREADABLE",
+            "reason": "QR verification unavailable.",
+            "results": [],
+            "parsedQr": None
+        }
+
     decoded_results = []
     
-    # Try OpenCV QRCodeDetector
+    # 1. Try OpenCV QRCodeDetector
     try:
         qr_detector = cv2.QRCodeDetector()
         retval, decoded_info, points, straight_qrcode = qr_detector.detectAndDecode(img)
@@ -17,7 +32,7 @@ def decode_qr_and_barcode(img: np.ndarray) -> dict:
     except Exception:
         pass
 
-    # Try PyZBar if available
+    # 2. Try PyZBar if available
     try:
         from pyzbar.pyzbar import decode
         barcodes = decode(img)
@@ -30,68 +45,75 @@ def decode_qr_and_barcode(img: np.ndarray) -> dict:
         pass
 
     detected = len(decoded_results) > 0
-    return {
-        "detected": detected,
-        "results": decoded_results,
-        "matchStatus": "DECODED" if detected else "NOT_AVAILABLE"
-    }
 
-def parse_passport_mrz(raw_text: str) -> dict:
-    """
-    Parses Passport MRZ TD3 format (2 lines of 44 characters) or TD1 format.
-    Validates MRZ checksum digits for Passport No, DOB, and Expiry.
-    """
-    text_upper = raw_text.upper().replace(" ", "")
-    mrz_lines = []
+    if not detected:
+        # Check if QR box is visually present but unreadable due to blur/damage
+        h, w = img.shape[:2]
+        qr_region = img[int(h*0.5):int(h*0.95), int(w*0.5):int(w*0.95)]
+        lap_var = float(np.var(cv2.Laplacian(cv2.cvtColor(qr_region, cv2.COLOR_BGR2GRAY), cv2.CV_64F))) if qr_region.size > 0 else 0
+        
+        if lap_var < 50.0:
+            return {
+                "detected": False,
+                "matchStatus": "UNREADABLE",
+                "reason": "QR verification unavailable.",
+                "results": [],
+                "parsedQr": None
+            }
+        else:
+            return {
+                "detected": False,
+                "matchStatus": "NOT_PRESENT",
+                "reason": "QR code not present on document (Standard for older PAN card designs).",
+                "results": [],
+                "parsedQr": None
+            }
 
-    # Find MRZ candidate lines (contain 'P<IND' or string with multiple '<')
-    for line in text_upper.split('\n'):
-        line = line.strip()
-        if len(line) >= 30 and line.count('<') >= 4:
-            mrz_lines.append(line)
-
-    if not mrz_lines or len(mrz_lines) < 2:
-        # Check regex on raw block text
-        mrz_match = re.search(r'P<[A-Z<]{42,}\n[A-Z0-9<]{42,}', text_upper)
-        if mrz_match:
-            mrz_lines = mrz_match.group(0).split('\n')
-
-    if not mrz_lines or len(mrz_lines) < 2:
-        return {"detected": False, "matchStatus": "NOT_AVAILABLE", "parsedMrz": None}
-
-    line1 = mrz_lines[0]
-    line2 = mrz_lines[1]
-
-    # MRZ TD3 Parsing
-    passport_no = line2[0:9].replace('<', '') if len(line2) >= 9 else ""
-    passport_check = line2[9] if len(line2) >= 10 else ""
-    dob = line2[13:19] if len(line2) >= 19 else ""
-    expiry = line2[21:27] if len(line2) >= 27 else ""
-
-    # Checksum validation helper (weights 7, 3, 1)
-    checksum_valid = validate_mrz_checksum(passport_no, passport_check) if passport_no and passport_check else True
+    raw_payload = decoded_results[0]["payload"]
+    parsed_qr = parse_pan_qr_payload(raw_payload)
 
     return {
         "detected": True,
-        "matchStatus": "VALID" if checksum_valid else "MISMATCH",
-        "parsedMrz": {
-            "documentNumber": passport_no,
-            "dob": dob,
-            "expiry": expiry,
-            "checksumValid": checksum_valid,
-            "rawLines": [line1, line2]
-        }
+        "matchStatus": "DECODED",
+        "reason": "QR code detected and successfully decoded.",
+        "results": decoded_results,
+        "parsedQr": parsed_qr
     }
 
-def validate_mrz_checksum(data: str, check_digit: str) -> bool:
-    weights = [7, 3, 1]
-    total = 0
-    for i, char in enumerate(data):
-        if char.isdigit():
-            val = int(char)
-        elif char.isalpha():
-            val = ord(char) - 55
-        else:
-            val = 0
-        total += val * weights[i % 3]
-    return (total % 10) == (int(check_digit) if check_digit.isdigit() else -1)
+def parse_pan_qr_payload(payload: str) -> dict:
+    """
+    Parses NSDL/UTIITSL PAN QR payloads (plain text, JSON, XML, or delimited string).
+    """
+    if not payload:
+        return {}
+
+    parsed = {}
+    
+    # Check 10-char PAN regex inside QR payload
+    pan_match = re.search(r'\b[A-Z]{5}[0-9]{4}[A-Z]{1}\b', payload.upper())
+    if pan_match:
+        parsed["panNumber"] = pan_match.group(0)
+
+    # Check DOB regex inside QR payload
+    dob_match = re.search(r'\b\d{2}[-/. ]\d{2}[-/. ]\d{4}\b', payload)
+    if dob_match:
+        parsed["dob"] = dob_match.group(0)
+
+    # Name extraction heuristic from pipe-delimited payload (e.g., PAN|NAME|FATHER_NAME|DOB)
+    if '|' in payload:
+        parts = [p.strip() for p in payload.split('|') if p.strip()]
+        for p in parts:
+            if re.match(r'^[A-Z]{5}[0-9]{4}[A-Z]{1}$', p.upper()):
+                parsed["panNumber"] = p.upper()
+            elif re.match(r'^\d{2}[-/. ]\d{2}[-/. ]\d{4}$', p):
+                parsed["dob"] = p
+            elif len(p) > 3 and not re.search(r'\d', p) and "pan" not in p.lower():
+                if "name" not in parsed:
+                    parsed["name"] = p
+                elif "fatherName" not in parsed:
+                    parsed["fatherName"] = p
+
+    return parsed
+
+def parse_passport_mrz(raw_text: str) -> dict:
+    return {"detected": False, "matchStatus": "NOT_AVAILABLE", "parsedMrz": None}

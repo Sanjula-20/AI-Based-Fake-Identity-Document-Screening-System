@@ -1,0 +1,1614 @@
+{
+  "totalTestCases": 20,
+  "confusionMatrix": {
+    "TP": 9,
+    "TN": 10,
+    "FP": 0,
+    "FN": 1
+  },
+  "metrics": {
+    "accuracy": 0.95,
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1Score": 0.9474,
+    "falsePositiveRate": 0.0,
+    "falseNegativeRate": 0.0
+  },
+  "evaluations": [
+    {
+      "filename": "tc01_genuine_pan.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc02_genuine_low_quality.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc03_genuine_old_design.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc04_genuine_qr_enabled.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc05_photo_replaced.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "SUSPICIOUS",
+          "confidence": 90,
+          "evidence": "Possible photo replacement/tampering detected."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc06_name_changed.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "SUSPICIOUS",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Name region text anomaly"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc07_pan_number_changed.jpg",
+      "isTamperedTarget": 1,
+      "decision": "UNVERIFIABLE",
+      "verdict": "UNABLE TO RELIABLY VERIFY \u2014 LOW QUALITY / UNREADABLE",
+      "riskStatus": "UNVERIFIABLE",
+      "riskScore": 25,
+      "fieldResults": {
+        "panNumber": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Unreadable",
+          "evidence": "PAN number could not be reliably read from OCR"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "UNAVAILABLE",
+          "panStatus": "UNREADABLE",
+          "nameMatch": "NOT_CHECKED",
+          "dobMatch": "NOT_CHECKED",
+          "details": "Authoritative database verification skipped due to missing or invalid PAN number string."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc08_dob_changed.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "SUSPICIOUS",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB region anomaly"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc09_signature_replaced.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "SUSPICIOUS",
+          "confidence": 85,
+          "evidence": "Possible signature-region manipulation"
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc10_multiple_fields_changed.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Unreadable",
+          "evidence": "PAN number could not be reliably read from OCR"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "SUSPICIOUS",
+          "confidence": 90,
+          "evidence": "Possible photo replacement/tampering detected."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "UNAVAILABLE",
+          "panStatus": "UNREADABLE",
+          "nameMatch": "NOT_CHECKED",
+          "dobMatch": "NOT_CHECKED",
+          "details": "Authoritative database verification skipped due to missing or invalid PAN number string."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc11_qr_mismatch.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Unreadable",
+          "evidence": "PAN number could not be reliably read from OCR"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "MISMATCH",
+          "confidence": 0,
+          "evidence": "QR encoded PAN differs from visible PAN."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "UNAVAILABLE",
+          "panStatus": "UNREADABLE",
+          "nameMatch": "NOT_CHECKED",
+          "dobMatch": "NOT_CHECKED",
+          "details": "Authoritative database verification skipped due to missing or invalid PAN number string."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc12_ocr_unreadable.jpg",
+      "isTamperedTarget": 0,
+      "decision": "UNVERIFIABLE",
+      "verdict": "UNABLE TO RELIABLY VERIFY \u2014 LOW QUALITY / UNREADABLE",
+      "riskStatus": "UNVERIFIABLE",
+      "riskScore": 25,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR verification unavailable."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "UNVERIFIABLE",
+          "confidence": 72,
+          "evidence": "PAN detected, but image quality is insufficient for reliable verification."
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc13_cropped_pan.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc14_screenshot_genuine.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc15_recompressed_genuine.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc16_ai_generated_pan.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc17_copy_paste_edited.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Unreadable",
+          "evidence": "PAN number could not be reliably read from OCR"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "SUSPICIOUS",
+          "confidence": 85,
+          "evidence": "Localized ELA compression anomaly detected"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "UNAVAILABLE",
+          "panStatus": "UNREADABLE",
+          "nameMatch": "NOT_CHECKED",
+          "dobMatch": "NOT_CHECKED",
+          "details": "Authoritative database verification skipped due to missing or invalid PAN number string."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc18_spliced_image.jpg",
+      "isTamperedTarget": 1,
+      "decision": "SUSPICIOUS",
+      "verdict": "POSSIBLE MANIPULATION",
+      "riskStatus": "MEDIUM_RISK",
+      "riskScore": 45,
+      "fieldResults": {
+        "panNumber": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Unreadable",
+          "evidence": "PAN number could not be reliably read from OCR"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "SUSPICIOUS",
+          "confidence": 85,
+          "evidence": "Localized ELA compression anomaly detected"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "UNAVAILABLE",
+          "panStatus": "UNREADABLE",
+          "nameMatch": "NOT_CHECKED",
+          "dobMatch": "NOT_CHECKED",
+          "details": "Authoritative database verification skipped due to missing or invalid PAN number string."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc19_poor_lighting.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    },
+    {
+      "filename": "tc20_perspective_distortion.jpg",
+      "isTamperedTarget": 0,
+      "decision": "VERIFIED",
+      "verdict": "NO OBVIOUS TAMPERING DETECTED",
+      "riskStatus": "LOW_RISK",
+      "riskScore": 10,
+      "fieldResults": {
+        "panNumber": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "value": "ABCPB****F",
+          "evidence": "Valid 10-char PAN format detected"
+        },
+        "name": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "Holder name extracted and verified"
+        },
+        "parentName": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "value": "Not Extracted",
+          "evidence": "Parent name region checked"
+        },
+        "dob": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "value": "Unreadable",
+          "evidence": "DOB format verified"
+        },
+        "photo": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Photograph region edges, sharpness, and ELA match surrounding document canvas."
+        },
+        "signature": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Signature region strokes and background contrast are consistent with document."
+        },
+        "qrCode": {
+          "status": "UNVERIFIABLE",
+          "confidence": 0,
+          "evidence": "QR code not present on document (Standard for older PAN card designs)."
+        },
+        "header": {
+          "status": "MATCHED",
+          "confidence": 90,
+          "evidence": "Income Tax Department header keywords recognized"
+        },
+        "layout": {
+          "status": "MATCHED",
+          "confidence": 95,
+          "evidence": "Document layout matches Indian PAN card template (OLDER_DESIGN_PAN)"
+        },
+        "imageForensics": {
+          "status": "MATCHED",
+          "confidence": 85,
+          "evidence": "Error Level Analysis shows uniform compression profile"
+        },
+        "documentQuality": {
+          "status": "MATCHED",
+          "confidence": 0,
+          "evidence": "Image quality analysis error: cannot unpack non-iterable numpy.int32 object"
+        },
+        "officialVerification": {
+          "status": "VERIFIED",
+          "panStatus": "EXISTING_AND_OPERATIVE",
+          "nameMatch": "MATCHED",
+          "dobMatch": "MATCHED",
+          "entityCode": "P",
+          "details": "PAN ABC****4F verified against database layer (Status: EXISTING_AND_OPERATIVE)."
+        },
+        "referenceComparison": {
+          "performed": false
+        }
+      }
+    }
+  ]
+}

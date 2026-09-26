@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
-  const primaryUri = process.env.MONGO_URI || 'mongodb://localhost:27017/identity_screening';
-  
+  const primaryUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/identity_screening';
+  const isCloudAtlas = primaryUri.includes('mongodb.net');
+
   try {
     const conn = await mongoose.connect(primaryUri, {
-      serverSelectionTimeoutMS: 2500
+      serverSelectionTimeoutMS: isCloudAtlas ? 10000 : 3500
     });
-    console.log(`[Database] Connected to primary MongoDB: ${conn.connection.host}`);
+    console.log(`[Database] Connected to ${isCloudAtlas ? 'MongoDB Atlas Cloud Cluster' : 'Primary MongoDB'}: ${conn.connection.host}`);
   } catch (error) {
     console.warn(`[Database] Primary MongoDB unavailable (${error.message}). Initializing In-Memory Mongo Server...`);
     try {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Shield, Lock, Mail, AlertCircle, ArrowRight } from 'lucide-react';
+import { Shield, Lock, Mail, AlertCircle, ArrowRight, Zap } from 'lucide-react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -20,9 +20,26 @@ export default function LoginPage() {
     try {
       const res = await login(email, password);
       if (res.success) {
-        navigate('/');
+        navigate('/screen');
       } else {
         setError(res.message || 'Invalid email or password');
+      }
+    } catch (err) {
+      setError('Connection error. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleQuickDemoLogin = async () => {
+    setError('');
+    setSubmitting(true);
+    try {
+      const res = await login('demo@shieldai.com', 'demo1234');
+      if (res.success) {
+        navigate('/screen');
+      } else {
+        setError(res.message || 'Demo login failed');
       }
     } catch (err) {
       setError('Connection error. Please try again.');
@@ -39,7 +56,33 @@ export default function LoginPage() {
             <Shield className="w-6 h-6" />
           </div>
           <h1 className="text-2xl font-heading font-extrabold text-slate-900">Sign In to ShieldAI</h1>
-          <p className="text-xs text-slate-500">Access document verification pipeline & fraud report archive</p>
+          <p className="text-xs text-slate-500">Access PAN card screening & fraud analysis dossier</p>
+        </div>
+
+        {/* 1-Click Quick Demo Sign In */}
+        <div className="p-4 rounded-2xl bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-200 space-y-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2 text-xs font-bold text-indigo-900 font-heading">
+              <Zap className="w-4 h-4 text-indigo-600 fill-indigo-600" />
+              <span>Instant Screening Access</span>
+            </div>
+            <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700">DEMO</span>
+          </div>
+          <p className="text-[11px] text-slate-600">Sign in instantly to test PAN card verification without typing credentials.</p>
+          <button
+            type="button"
+            onClick={handleQuickDemoLogin}
+            disabled={submitting}
+            className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-heading font-bold text-xs transition shadow-md shadow-indigo-600/20 flex items-center justify-center space-x-2"
+          >
+            <span>⚡ 1-Click Quick Demo Sign In</span>
+          </button>
+        </div>
+
+        <div className="flex items-center my-4">
+          <div className="flex-1 border-t border-slate-200"></div>
+          <span className="px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">or sign in with email</span>
+          <div className="flex-1 border-t border-slate-200"></div>
         </div>
 
         {error && (
@@ -83,9 +126,9 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-heading font-bold text-sm transition shadow-md shadow-indigo-600/20 flex items-center justify-center space-x-2"
+            className="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-heading font-bold text-sm transition shadow-md flex items-center justify-center space-x-2"
           >
-            <span>{submitting ? 'Authenticating...' : 'Sign In'}</span>
+            <span>{submitting ? 'Authenticating...' : 'Sign In with Email'}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>

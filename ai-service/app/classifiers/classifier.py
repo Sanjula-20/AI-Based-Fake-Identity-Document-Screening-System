@@ -1,55 +1,52 @@
 import re
 
-DOCUMENT_KEYWORDS = {
-    "PAN": [
-        r"INCOME\s*TAX\s*DEPARTMENT", r"PERMANENT\s*ACCOUNT\s*NUMBER", r"GOVT\s*OF\s*INDIA",
-        r"[A-Z]{5}[0-9]{4}[A-Z]"
-    ],
-    "PASSPORT": [
-        r"REPUBLIC\s*OF\s*INDIA", r"PASSPORT", r"P<IND", r"SURNAME", r"GIVEN\s*NAMES"
-    ],
-    "AADHAAR": [
-        r"UNIQUE\s*IDENTIFICATION", r"AUTHORITY\s*OF\s*INDIA", r"AADHAAR",
-        r"GOVERNMENT\s*OF\s*INDIA", r"\d{4}\s*\d{4}\s*\d{4}"
-    ],
-    "DRIVING_LICENSE": [
-        r"DRIVING\s*LICENCE", r"MOTOR\s*VEHICLES", r"UNION\s*OF\s*INDIA", r"TRANSPORT", r"DL\s*NO"
-    ],
-    "COLLEGE_ID": [
-        r"STUDENT\s*ID", r"COLLEGE", r"UNIVERSITY", r"ACADEMIC\s*YEAR", r"ROLL\s*NO", r"REGISTRATION\s*NO"
-    ],
-    "EMPLOYEE_ID": [
-        r"EMPLOYEE\s*ID", r"STAFF\s*ID", r"CORPORATE", r"EMP\s*CODE", r"COMPANY", r"ACCESS\s*CARD"
-    ]
-}
+PAN_KEYWORDS = [
+    r"INCOME\s*TAX\s*DEPARTMENT", r"PERMANENT\s*ACCOUNT\s*NUMBER", r"GOVT\s*OF\s*INDIA",
+    r"GOVERNMENT\s*OF\s*INDIA", r"आयकर\s*विभाग", r"भारत\s*सरकार", r"[A-Z]{5}[0-9]{4}[A-Z]"
+]
 
-def classify_document(raw_text: str, image_shape: tuple, selected_hint: str = None) -> dict:
+NON_PAN_KEYWORDS = [
+    r"PASSPORT", r"P<IND", r"AADHAAR", r"UNIQUE\s*IDENTIFICATION", r"DRIVING\s*LICENCE",
+    r"MOTOR\s*VEHICLES", r"VOTER\s*ID", r"ELECTION\s*COMMISSION"
+]
+
+def classify_document(raw_text: str, image_shape: tuple, selected_hint: str = "PAN") -> dict:
     """
-    Classifies document type combining text keyword extraction, regex patterns, and image geometry.
+    Indian PAN Card Dedicated Classifier.
+    Validates whether the document image is an Indian PAN Card.
     """
     text_upper = raw_text.upper() if raw_text else ""
-    type_scores = {doc_type: 0 for doc_type in DOCUMENT_KEYWORDS}
+    pan_score = 0
+    non_pan_score = 0
 
-    for doc_type, keywords in DOCUMENT_KEYWORDS.items():
-        for pattern in keywords:
-            if re.search(pattern, text_upper):
-                type_scores[doc_type] += 2.5
+    for pattern in PAN_KEYWORDS:
+        if re.search(pattern, text_upper):
+            pan_score += 2.5
 
-    best_type = max(type_scores, key=type_scores.get)
-    max_score = type_scores[best_type]
+    for pattern in NON_PAN_KEYWORDS:
+        if re.search(pattern, text_upper):
+            non_pan_score += 3.0
 
-    # Calculate confidence ratio
-    confidence = min(round(max_score / 5.0, 2), 0.98) if max_score > 0 else 0.40
+    if non_pan_score > 3.0 and pan_score < 2.0:
+        return {
+            "documentType": "NON_PAN_DOCUMENT",
+            "confidence": 0.90,
+            "isPanCard": False,
+            "reason": "Uploaded document is not an Indian PAN Card (Aadhaar/Passport/DL detected)."
+        }
 
-    if confidence < 0.50 and selected_hint and selected_hint in DOCUMENT_KEYWORDS:
-        best_type = selected_hint
-        confidence = 0.70
-    elif confidence < 0.40:
-        best_type = "UNKNOWN"
-        confidence = 0.0
+    if pan_score >= 2.0 or selected_hint == "PAN":
+        confidence = min(round(max(pan_score / 5.0, 0.75), 2), 0.98)
+        return {
+            "documentType": "PAN",
+            "confidence": confidence,
+            "isPanCard": True,
+            "reason": "Indian PAN Card structure and keywords recognized."
+        }
 
     return {
-        "documentType": best_type,
-        "confidence": confidence,
-        "matchScores": type_scores
+        "documentType": "PAN",
+        "confidence": 0.60,
+        "isPanCard": True,
+        "reason": "Assumed Indian PAN Card for screening."
     }

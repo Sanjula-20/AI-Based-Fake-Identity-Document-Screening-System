@@ -81,7 +81,24 @@ const verificationSchema = new mongoose.Schema({
     details: String
   },
   
-  // Aggregate Risk Engine Output
+  // Aggregate Risk Engine Output & Classification Basis
+  isCorrect: {
+    type: Boolean,
+    default: true
+  },
+  classification: {
+    type: String,
+    enum: ['CORRECT', 'INCORRECT'],
+    default: 'CORRECT'
+  },
+  basisOfClassification: {
+    classification: String,
+    isCorrect: Boolean,
+    primaryBasis: String,
+    failedReasons: Array,
+    passedReasons: Array,
+    warnings: Array
+  },
   riskScore: {
     type: Number,
     required: true
